@@ -1,0 +1,37 @@
+{
+  "name": "hanpyo-api",
+  "version": "0.0.1",
+  "description": "Hanpyo.com server",
+  "homepage": "https://hanpyo.com/",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koreatech/hanpyo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/koreatech/hanpyo/issues"
+  },
+  "keywords": [
+    "hanpyo",
+    "koreatech"
+  ],
+  "engines": {
+    "node": ">= 12.14.0"
+  },
+  "main": "src",
+  "scripts": {
+    "start": "node src",
+    "dev": "NODE_ENV=development nodemon --quiet | pino-pretty -c -l -t",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-router": "^7.4.0",
+    "pino": "^5.15.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2",
+    "pino-pretty": "^3.5.0"
+  }
+}
