@@ -1,38 +1,52 @@
 .App {
   text-align: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  display: table;
+  vertical-align: middle;
+  margin: auto;
+  width: 80rem;
+}
+
+.box {
+  text-align: center;
+  padding-top: 2rem;
+  height: 90vh;
+  width: 40rem;
+  display: table-cell;
+  vertical-align: top;
+  background-color: lightgray;
+  box-shadow: 0 0.5px 1.5px 0 rgba(0, 0, 0, 0.16);
 }
 
 .logo {
   font-size: 2.5rem;
+  font-weight: bolder;
   color: #ffb84d;
 }
-
-.navigation {  
+.nav_background_color {
   background-color: #f3f3f3;
-  padding-top: 1rem;
-  box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
-.navigation_container1 {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 1.7rem;
+.navigation {
+  display: table;
+  vertical-align: middle;
+  background-color: #f3f3f3;
+  width: 80rem;
+  margin: auto;
 }
 
-.navigation_container2 {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 3rem;
+.navigation_container {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50rem;
 }
 
-li {
-  display: inline;
-  font-size: 1.5rem;
-  line-height: 1.18;
-  padding-left: 3rem;
-  padding-right: 3rem;
+h2 {
+  color: #939393;
 }
 
 h5 {
@@ -56,4 +70,24 @@ h5 {
 .link {
   text-decoration:none;
   color: black;
+}
+
+.notice {
+  color: #ffb84d;
+  font-size: 0.8rem;
+  padding-left: 2rem;
+  text-align: left;
+  width: 30rem;
+  height: 2rem;
+  border-radius: 10.5px;
+  box-shadow: 0 0.5px 1.5px 0 rgba(0, 0, 0, 0.16);
+  border: solid 0.5px #e6e6e6;
+  background-color: #ffffff;
+  margin: auto;
+}
+
+.notice_icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
 }
