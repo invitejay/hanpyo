@@ -4,6 +4,35 @@
   height: 100vh;
 }
 
+.main_text {
+  font-size: 1rem;
+  color: #ffb84d;
+  margin-bottom: -0.2rem;
+}
+
+.main_line {
+  border: 1px solid #ffb84d;
+  width: 40rem;
+}
+
+.select_box {
+  padding-left: 1.2rem;
+  /* text-align-last:center;  */
+  width: 7.2rem;
+  height: 2.5rem;
+  font-size: 0.9rem;
+  border-color: #c7c7c7;
+  color: #868686;
+  border-radius: 0.5rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  background: url('./img/select_button.png') no-repeat 92% 50%;
+  background-size: 1rem;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+}
+
+/* container CSS */
+
 .container {
   display: table;
   vertical-align: middle;
@@ -14,13 +43,14 @@
 .box {
   text-align: center;
   padding-top: 2rem;
+  padding-bottom: 1rem;
   height: 90vh;
   width: 40rem;
   display: table-cell;
   vertical-align: top;
-  background-color: lightgray;
-  box-shadow: 0 0.5px 1.5px 0 rgba(0, 0, 0, 0.16);
 }
+
+/* Nav bar CSS */
 
 .logo {
   font-size: 2.5rem;
@@ -65,12 +95,15 @@ h5 {
   border-radius: 0.7rem;
   box-shadow: 0.5px 0.5px 0.5px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffb84d;
+  outline: none;
 }
 
 .link {
   text-decoration:none;
   color: black;
 }
+
+/* notice CSS */
 
 .notice {
   color: #ffb84d;
@@ -86,8 +119,164 @@ h5 {
   margin: auto;
 }
 
+.notice_position {
+  position: relative;
+  top: -0.45rem;
+}
 .notice_icon {
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
+}
+
+/* Table CSS */
+
+.table_container {
+  border: solid 0.5px #e6e6e6;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5px 1.5px 0 rgba(0, 0, 0, 0.16);
+  padding: 1rem;
+  width: 30rem;
+  height: 42rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+/* Button CSS */
+
+.button_container {
+  display: table;
+  width: 32rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.button_container_cell {
+  display: table-cell;
+}
+
+.store_button {
+  display: table-cell;
+  width: 14rem;
+  height: 2.5rem;
+  background-color: #ffb84d;
+  color: white;
+  border-radius: 1rem;
+  outline: none;
+}
+
+.share_button {
+  display: table-cell;
+  width: 14rem;
+  height: 2.5rem;
+  background-color: #f3f3f3;
+  color: black;
+  border-radius: 1rem;
+  outline: none;
+}
+
+/* Find Lecture CSS */
+
+.find_lecture_container {
+  margin-top: -1rem;
+  text-align: left;
+}
+
+.find_lecture_textbox {
+  margin-bottom:-1rem;
+  width: 38rem;
+  height: 2rem;
+  border: none;
+  color: #979797;
+  border-radius: 1rem;
+  font-size: 1rem;
+  background-color: #f3f3f3;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  outline: none;
+}
+
+.search_icon {
+  position: absolute;
+  margin-top: 0.6rem;
+  margin-left: -3rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.find_lecture_container_table {
+  display: table;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.find_lecture_container_table_cell {
+  display: table-cell;
+}
+
+.find_lecture_table {
+  width: 40rem;
+  height: 20rem;
+  border: solid 0.5px #dfdfdf;
+  border-radius: 5px;
+}
+
+/* add_custom CSS */
+
+.add_custom_container {
+  text-align: left;
+}
+
+.add_custom_container_table {
+  display: table;
+  vertical-align: middle;
+}
+
+.add_custom_container_table_cell {
+  display: table-cell;
+}
+
+.add_custom_hr {
+  margin-bottom:-0.5rem;
+}
+
+.add_custom_select {
+  padding-left: 0.7rem;
+  width: 5.5rem;
+}
+
+.add_custom_textbox {
+  margin-left: 0.2rem;
+  width: 14rem;
+  height: 2rem;
+  margin-right: 1rem;
+  color: #d2d2d2;
+}
+
+.add_custom_textbox::placeholder {
+  padding-left: 0.2rem;
+  color: #d2d2d2;
+}
+
+.add_custom_button {
+  width: 5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  background-color: #ffb84d;
+  color: white;
+  box-shadow: 0 0.5px 1.5px 0 rgba(0, 0, 0, 0.16);
+}
+
+/* basket */
+
+.basket_container {
+  text-align: left;
+}
+
+.basket_table {
+  width: 40rem;
+  height: 12rem;
+  border: solid 0.5px #dfdfdf;
+  border-radius: 5px;
 }
