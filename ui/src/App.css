@@ -190,6 +190,10 @@ h5 {
   border-top: 0.1px solid #cccccc;
 }
 
+.cell_display_none {
+  display: none;
+}
+
 /* Button CSS */
 
 .button_container {
@@ -270,7 +274,7 @@ h5 {
   overflow-y: scroll;
 }
 
-.find_lecture_header_table {
+.find_lecture_table {
   vertical-align: middle;
   text-align: center;
   padding-left: 0.3rem;
@@ -278,15 +282,13 @@ h5 {
   width: 38rem;
   margin: auto;
   margin-top: 0.5rem;
-  border: 0.5px solid #cccccc;
-  background-color: #f3f3f3;
-  border-radius: 0.7rem;
+  border-collapse: collapse;
 }
 
-.find_lecture_header {
+.find_lectures {
   position: relative;
 }
-.find_lecture_header:after{
+.find_lectures:after{
   position: absolute;
   border-right: 1px solid #cecece; 
   content: "";
@@ -295,13 +297,34 @@ h5 {
   right: -1px;
 }
 
-.find_lecture_body_table {
-  vertical-align: middle;
-  text-align: center;
-  padding-left: 0.3rem;
-  padding-right: 1rem;
-  width: 38rem;
-  margin: auto;
+.find_lecture_tr {
+  height: 2rem;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.find_lecture_tr:hover {
+  background-color: #ffb84d;
+  color: white;
+}
+
+.find_lecture_th {
+  border: 0.5px solid #cccccc;
+  background-color: #f3f3f3;
+  border-radius: 0.7rem;
+  height: 2rem;
+}
+
+.find_lecture_th:before {
+  border-radius: 1rem;
+}
+
+.lecture_selected {
+  background-color: #ffb84d;
+  color: white;
 }
 
 /* add_custom CSS */

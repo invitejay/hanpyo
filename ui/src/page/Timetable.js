@@ -1,89 +1,127 @@
 import React, { Component } from 'react';
 import '../App.css';
-
-const WEEK_NAME = ["월요일", "화요일", "수요일", "목요일", "금요일"];
-
-const TIME = [
-  { time_name: "01A", clock_name: "09:00"},
-  { time_name: "01B", clock_name: "09:30"},
-  { time_name: "02A", clock_name: "10:00"},
-  { time_name: "02B", clock_name: "10:30"},
-  { time_name: "03A", clock_name: "11:00"},
-  { time_name: "03B", clock_name: "11:30"},
-  { time_name: "04A", clock_name: "12:00"},
-  { time_name: "04B", clock_name: "12:30"},
-  { time_name: "05A", clock_name: "13:00"},
-  { time_name: "05B", clock_name: "13:30"},
-  { time_name: "06A", clock_name: "14:00"},
-  { time_name: "06B", clock_name: "14:30"},
-  { time_name: "07A", clock_name: "15:00"},
-  { time_name: "07B", clock_name: "15:30"},
-  { time_name: "08A", clock_name: "16:00"},
-  { time_name: "08B", clock_name: "16:30"},
-  { time_name: "09A", clock_name: "17:00"},
-  { time_name: "09B", clock_name: "17:30"},
-]
-
-const test_data = [
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-  { code: "HANPYO", lecture_name: "디자인커뮤니케이션", class: "01", professor: "윤정식", grade: "03", personnel: "25", department: "디자인건축공학부"},
-]
+import {WEEK_NAME, TIME} from "../constants/timedata";
+import {test_data} from "../constants/testdata";
 
 class timetable extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      
+      info: test_data,
+      selected_lecture: {},
+      basket_lecture: [],
+    }
+    this.days = [
+      ["01A", "09:00",1,1,1,1,1],
+      ["01B", "09:30",1,1,1,1,1],
+      ["02A", "10:00",1,1,1,1,1],
+      ["02B", "10:30",1,1,1,1,1],
+      ["03A", "11:00",1,1,1,1,1],
+      ["03B", "11:30",1,1,1,1,1],
+      ["04A", "12:00",1,1,1,1,1],
+      ["04B", "12:30",1,1,1,1,1],
+      ["05A", "13:00",1,1,1,1,1],
+      ["05B", "13:30",1,1,1,1,1],
+      ["06A", "14:00",1,1,1,1,1],
+      ["06B", "14:30",1,1,1,1,1],
+      ["07A", "15:00",1,1,1,1,1],
+      ["07B", "15:30",1,1,1,1,1],
+      ["08A", "16:00",1,1,1,1,1],
+      ["08B", "16:30",1,1,1,1,1],
+      ["09A", "17:00",1,1,1,1,1],
+      ["09B", "17:30",1,1,1,1,1],
+    ]
+  }
+
+  handlingSelect(selected) {
+    if (selected.code !== this.state.selected_lecture.code) {
+      this.setState({ selected_lecture: selected });
+    } else {
+      this.setState({ selected_lecture: {} });
     }
   }
-  
+
+  handlingDoubleClick(selected) {
+    const newbasket = [
+      ...this.state.basket_lecture,
+      selected,
+    ]
+    for(var i=0; i<this.state.basket_lecture.length; i++) {
+      if(this.state.basket_lecture[i].code===selected.code){
+        return ;
+      }
+    }
+    this.setState({basket_lecture: newbasket})
+  }
+
+  handlingBasketDoubleClick(selected) {
+    const newbasket = this.state.basket_lecture.filter(
+      data => data.code !== selected.code
+    );
+    this.setState({basket_lecture: newbasket})
+  }
+
   render() {
-    const init_table_header = WEEK_NAME.map((week)=> 
-        <td className='timetable_header'>{week}</td>
+    const init_table_header = WEEK_NAME.map((week)=>
+      <td className='timetable_header'>{week}</td>
     )
-    const init_table_body = TIME.map((time)=>
+
+    const init_table_body = this.days.map((data)=>
       <tr>
-        <td className='timetable_body'>{time.time_name}</td>
-        <td className='timetable_body'>{time.clock_name}</td>
-        <td className='timetable_body'></td>
-        <td className='timetable_body'></td>
-        <td className='timetable_body'></td>
-        <td className='timetable_body'></td>
-        <td className='timetable_body'></td>
+        <td className='timetable_body'>{data[0]}</td>
+        <td className='timetable_body'>{data[1]}</td>
+        <td className={data[2]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[2]}></td>
+        <td className={data[3]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[3]}></td>
+        <td className={data[4]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[4]}></td>
+        <td className={data[5]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[5]}></td>
+        <td className={data[6]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[6]}></td>
       </tr>
+    ) 
+
+    const load_lecture_data = this.state.info.reduce(
+      (result, value) => {
+        for(var i=0; i<this.state.basket_lecture.length; i++) {
+          if(value.code===this.state.basket_lecture[i].code) {
+            return result;
+          }
+        }
+        result.push(value);
+        return result;
+      }, []
+    ).map((data) => 
+        <tr key = {data.code}
+          className={this.state.selected_lecture.code === data.code ? "find_lecture_tr lecture_selected" : "find_lecture_tr"}
+          onClick={this.handlingSelect.bind(this, data)}
+          onDoubleClick={this.handlingDoubleClick.bind(this, data)}
+        >
+          <td width='60rem' className='find_lectures'>{data.code}</td>
+          <td width='160rem' className='find_lectures'>{data.lecture_name}</td>
+          <td width='40rem' className='find_lectures'>{data.class}</td>
+          <td width='60rem' className='find_lectures'>{data.professor}</td>
+          <td width='40rem' className='find_lectures'>{data.grade}</td>
+          <td width='40rem' className='find_lectures'>{data.personnel}</td>
+          <td width='160rem'>{data.department}</td>
+        </tr>
     )
-    const load_lecture_data = test_data.map((data) =>
-      <tr>
-        <td width='60rem' className='find_lecture_header'>{data.code}</td>
-        <td width='160rem' className='find_lecture_header'>{data.lecture_name}</td>
-        <td width='40rem' className='find_lecture_header'>{data.class}</td>
-        <td width='60rem' className='find_lecture_header'>{data.professor}</td>
-        <td width='40rem' className='find_lecture_header'>{data.grade}</td>
-        <td width='40rem' className='find_lecture_header'>{data.personnel}</td>
+
+    const load_basket_data = this.state.basket_lecture.map((data) =>
+    <tr key = {data.code}
+      className={this.state.selected_lecture.code === data.code ? "find_lecture_tr lecture_selected" : "find_lecture_tr"}
+      onClick={this.handlingSelect.bind(this, data)}
+      onDoubleClick={this.handlingBasketDoubleClick.bind(this, data)}
+    >
+        <td width='60rem' className='find_lectures'>{data.code}</td>
+        <td width='160rem' className='find_lectures'>{data.lecture_name}</td>
+        <td width='40rem' className='find_lectures'>{data.class}</td>
+        <td width='60rem' className='find_lectures'>{data.professor}</td>
+        <td width='40rem' className='find_lectures'>{data.grade}</td>
+        <td width='40rem' className='find_lectures'>{data.personnel}</td>
         <td width='160rem'>{data.department}</td>
       </tr>
     )
     return (
-      <div>
         <div className='container'>
           <div className='box' >
-
             {/* 공지사항 */}
             <div className='notice'>
               <h3 className='notice_position'><img className = 'notice_icon' alt='#' src={require('../img/notice_icon.jpg')}/>공지사항</h3>
@@ -106,7 +144,6 @@ class timetable extends Component {
                   <td className='timetable_body'></td>
                 </tr>
               </table>
-              
             </div>
             
             {/* 버튼 */}
@@ -150,21 +187,21 @@ class timetable extends Component {
                 <div className = 'find_lecture_container_table_cell'>
                   <select className='select_box'>
                     <option>요　일</option>
-                    <option>월</option>
-                    <option>화</option>
-                    <option>수</option>
-                    <option>목</option>
-                    <option>금</option>
+                    <option>월요일</option>
+                    <option>화요일</option>
+                    <option>수요일</option>
+                    <option>목요일</option>
+                    <option>금요일</option>
                   </select>
                 </div>
                 <div className = 'find_lecture_container_table_cell'>
                   <select className='select_box'>
                     <option>학　점</option>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    <option>0학점</option>
+                    <option>1학점</option>
+                    <option>2학점</option>
+                    <option>3학점</option>
+                    <option>4학점</option>
                   </select>
                 </div>
                 <div className = 'find_lecture_container_table_cell'>
@@ -184,27 +221,19 @@ class timetable extends Component {
                 </div>
               </div>
 
-
               <div className='find_lecture_table_container'>
-                <table className='find_lecture_header_table'>
-                  <th>
-                    <td width='60rem' className='find_lecture_header'>코드</td>
-                    <td width='160rem' className='find_lecture_header'>강의명</td>
-                    <td width='40rem' className='find_lecture_header'>분반</td>
-                    <td width='60rem' className='find_lecture_header'>교수</td>
-                    <td width='40rem' className='find_lecture_header'>대상</td>
-                    <td width='40rem' className='find_lecture_header'>정원</td>
-                    <td width='160rem'>개설학부</td>
-                  </th>
-                  
-                </table>
-                <table className='find_lecture_body_table'>
+                <table className='find_lecture_table'>
+                  <tr className='find_lecture_th'>
+                    <td className='find_lectures'>코드</td>
+                    <td className='find_lectures'>강의명</td>
+                    <td className='find_lectures'>분반</td>
+                    <td className='find_lectures'>교수</td>
+                    <td className='find_lectures'>대상</td>
+                    <td className='find_lectures'>정원</td>
+                    <td >개설학부</td>
+                  </tr>
                   {load_lecture_data}
                 </table>
-
-              <div className='find_lecture_table'>
-                
-
               </div>
             </div>
 
@@ -252,22 +281,22 @@ class timetable extends Component {
               <hr className='main_line'/>
               
               <div className='basket_table'>
-                <table className='find_lecture_header_table'>
-                  <th>
-                    <td width='60rem' className='find_lecture_header'>코드</td>
-                    <td width='160rem' className='find_lecture_header'>강의명</td>
-                    <td width='40rem' className='find_lecture_header'>분반</td>
-                    <td width='60rem' className='find_lecture_header'>교수</td>
-                    <td width='40rem' className='find_lecture_header'>대상</td>
-                    <td width='40rem' className='find_lecture_header'>정원</td>
-                    <td width='160rem'>개설학부</td>
-                  </th>
+                <table className='find_lecture_table'>
+                  <tr className='find_lecture_th'>
+                    <td className='find_lectures'>코드</td>
+                    <td className='find_lectures'>강의명</td>
+                    <td className='find_lectures'>분반</td>
+                    <td className='find_lectures'>교수</td>
+                    <td className='find_lectures'>대상</td>
+                    <td className='find_lectures'>정원</td>
+                    <td >개설학부</td>
+                  </tr>
+                  {load_basket_data}
                 </table>
               </div>
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }
