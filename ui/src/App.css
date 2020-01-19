@@ -5,6 +5,7 @@
 }
 
 .main_text {
+  text-align: left;
   font-size: 1rem;
   color: #ffb84d;
   margin-bottom: -0.2rem;
@@ -29,6 +30,7 @@
   background: url('./img/select_button.png') no-repeat 92% 50%;
   background-size: 1rem;
   -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  outline: none;
 }
 
 /* container CSS */
@@ -143,6 +145,51 @@ h5 {
   margin-top: 1rem;
 }
 
+.timetable_tab {
+  margin-top: -0.1rem;
+  margin-left: 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+  color: #868686;
+  
+}
+
+.timetable {
+  vertical-align: middle;
+  margin: auto;
+  border: 0.5px solid #cccccc;
+  border-radius: 1rem;
+  overflow: hidden;
+  border-spacing: 0;
+}
+
+.timetable_header {
+  background-color: #fffaf3;
+  width: 5rem;
+  height: 2rem;
+  border-left: 0.5px solid #cccccc;
+  border-top: 0.5px solid #cccccc;
+}
+
+.tab_icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: -0.4rem;
+}
+
+.timetable_time {
+  width: 4rem;
+  height: 1.9rem;
+  border-left: 0.1px solid #cccccc;
+  border-top: 0.1px solid #cccccc;
+}
+
+.timetable_body {
+  height: 1.9rem;
+  border-left: 0.1px solid #cccccc;
+  border-top: 0.1px solid #cccccc;
+}
+
 /* Button CSS */
 
 .button_container {
@@ -215,11 +262,46 @@ h5 {
   display: table-cell;
 }
 
-.find_lecture_table {
+.find_lecture_table_container {
   width: 40rem;
   height: 20rem;
   border: solid 0.5px #dfdfdf;
   border-radius: 5px;
+  overflow-y: scroll;
+}
+
+.find_lecture_header_table {
+  vertical-align: middle;
+  text-align: center;
+  padding-left: 0.3rem;
+  padding-right: 1rem;
+  width: 38rem;
+  margin: auto;
+  margin-top: 0.5rem;
+  border: 0.5px solid #cccccc;
+  background-color: #f3f3f3;
+  border-radius: 0.7rem;
+}
+
+.find_lecture_header {
+  position: relative;
+}
+.find_lecture_header:after{
+  position: absolute;
+  border-right: 1px solid #cecece; 
+  content: "";
+  top: 15%;
+  bottom: 15%;
+  right: -1px;
+}
+
+.find_lecture_body_table {
+  vertical-align: middle;
+  text-align: center;
+  padding-left: 0.3rem;
+  padding-right: 1rem;
+  width: 38rem;
+  margin: auto;
 }
 
 /* add_custom CSS */
@@ -279,4 +361,5 @@ h5 {
   height: 12rem;
   border: solid 0.5px #dfdfdf;
   border-radius: 5px;
+  overflow: scroll;
 }
