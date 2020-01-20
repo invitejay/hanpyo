@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
-import {WEEK_NAME, TIME} from "../constants/timedata";
+import './border.css';
+import {WEEK_NAME} from "../constants/timedata";
 import {test_data} from "../constants/testdata";
+// import {COLOR_SET} from "../constants/color";
 
 class timetable extends Component {
   constructor() {
@@ -10,32 +12,95 @@ class timetable extends Component {
       info: test_data,
       selected_lecture: {},
       basket_lecture: [],
+      search_text: "",
+      days: [
+        ["01A", "09:00",0,0,0,0,0],
+        ["01B", "09:30",0,0,0,0,0],
+        ["02A", "10:00",0,0,0,0,0],
+        ["02B", "10:30",0,0,0,0,0],
+        ["03A", "11:00",0,0,0,0,0],
+        ["03B", "11:30",0,0,0,0,0],
+        ["04A", "12:00",0,0,0,0,0],
+        ["04B", "12:30",0,2,0,0,0],
+        ["05A", "13:00",0,3,0,0,0],
+        ["05B", "13:30",0,3,0,0,0],
+        ["06A", "14:00",0,4,0,0,0],
+        ["06B", "14:30",0,0,0,0,0],
+        ["07A", "15:00",0,0,0,0,0],
+        ["07B", "15:30",0,0,0,0,0],
+        ["08A", "16:00",0,0,0,0,0],
+        ["08B", "16:30",0,0,0,0,0],
+        ["09A", "17:00",0,0,0,0,0],
+        ["09B", "17:30",0,0,0,0,0],
+      ],
+      text: [
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+          ["","","","",""],
+      ]
     }
-    this.days = [
-      ["01A", "09:00",1,1,1,1,1],
-      ["01B", "09:30",1,1,1,1,1],
-      ["02A", "10:00",1,1,1,1,1],
-      ["02B", "10:30",1,1,1,1,1],
-      ["03A", "11:00",1,1,1,1,1],
-      ["03B", "11:30",1,1,1,1,1],
-      ["04A", "12:00",1,1,1,1,1],
-      ["04B", "12:30",1,1,1,1,1],
-      ["05A", "13:00",1,1,1,1,1],
-      ["05B", "13:30",1,1,1,1,1],
-      ["06A", "14:00",1,1,1,1,1],
-      ["06B", "14:30",1,1,1,1,1],
-      ["07A", "15:00",1,1,1,1,1],
-      ["07B", "15:30",1,1,1,1,1],
-      ["08A", "16:00",1,1,1,1,1],
-      ["08B", "16:30",1,1,1,1,1],
-      ["09A", "17:00",1,1,1,1,1],
-      ["09B", "17:30",1,1,1,1,1],
-    ]
+  }
+  start_rows = (obj, i) => { return ((obj.time[i].start%1440)-540)/30; }
+  start_cols = (obj, i) => { return Math.floor(obj.time[i].start/1440) + 2; }
+  end_rows = (obj, i) => { return ((obj.time[i].end%1440)-540)/30; }
+  end_cols = (obj, i) => { return Math.floor(obj.time[i].end/1440) + 2; }
+
+  // border style function
+  checkBorder = (vaule) => { return "border_" + vaule; }
+
+  displayClear = () => {
+    var data = this.state.days;
+    for(var i=0; i<18; i++) {
+      for(var j=2; j<7; j++) {
+        data[i][j] = 0;
+      }
+    }
+    this.setState({days: data});
+  }
+
+  displayBoder = (object) => {
+    this.displayClear();
+    for(var num=0; num<object.time.length; num++) {
+      var distance = this.end_rows(object, num) - this.start_rows(object, num);
+      var data = this.state.days;
+      if(distance===1) {
+        data[this.start_rows(object, num)][this.start_cols(object, num)] = 5;
+        this.setState({days: data})
+      }
+      else {
+        data[this.start_rows(object, num)][this.start_cols(object, num)] = 6;
+        for(var i=1; i<distance-1; i++) {
+          data[this.start_rows(object, num)+i][this.start_cols(object, num)] = 7;
+        }
+        data[this.end_rows(object, num)-1][this.start_cols(object, num)] = 8;
+      }
+    }
+  }
+
+  add_basket = (object) => {
+    this.displayClear();
+
   }
 
   handlingSelect(selected) {
     if (selected.code !== this.state.selected_lecture.code) {
       this.setState({ selected_lecture: selected });
+      this.displayBoder(selected);
     } else {
       this.setState({ selected_lecture: {} });
     }
@@ -52,6 +117,7 @@ class timetable extends Component {
       }
     }
     this.setState({basket_lecture: newbasket})
+    this.add_basket(selected);
   }
 
   handlingBasketDoubleClick(selected) {
@@ -61,20 +127,24 @@ class timetable extends Component {
     this.setState({basket_lecture: newbasket})
   }
 
+  handlingChange = (event) => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
   render() {
     const init_table_header = WEEK_NAME.map((week)=>
       <td className='timetable_header'>{week}</td>
     )
 
-    const init_table_body = this.days.map((data)=>
+    const init_table_body = this.state.days.map((data)=>
       <tr>
         <td className='timetable_body'>{data[0]}</td>
         <td className='timetable_body'>{data[1]}</td>
-        <td className={data[2]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[2]}></td>
-        <td className={data[3]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[3]}></td>
-        <td className={data[4]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[4]}></td>
-        <td className={data[5]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[5]}></td>
-        <td className={data[6]!==0? 'timetable_body': 'cell_display_none'} rowSpan={data[6]}></td>
+        <td id={data[0] + "-0"} className={this.checkBorder([data[2]])}></td>
+        <td id={data[0] + "-1"}className={this.checkBorder([data[3]])}></td>
+        <td id={data[0] + "-2"}className={this.checkBorder([data[4]])}></td>
+        <td id={data[0] + "-3"}className={this.checkBorder([data[5]])}></td>
+        <td id={data[0] + "-4"}className={this.checkBorder([data[6]])}></td>
       </tr>
     ) 
 
@@ -85,7 +155,17 @@ class timetable extends Component {
             return result;
           }
         }
-        result.push(value);
+        if(this.state.search_text!=='') {
+          if(value.code.indexOf(this.state.search_text) > -1 ||
+             value.lecture_name.indexOf(this.state.search_text) > -1 ||
+             value.professor.indexOf(this.state.search_text) > -1
+          ) {
+            result.push(value)
+          }
+        }
+        else {
+          result.push(value);
+        }
         return result;
       }, []
     ).map((data) => 
@@ -94,14 +174,14 @@ class timetable extends Component {
           onClick={this.handlingSelect.bind(this, data)}
           onDoubleClick={this.handlingDoubleClick.bind(this, data)}
         >
-          <td width='60rem' className='find_lectures'>{data.code}</td>
-          <td width='160rem' className='find_lectures'>{data.lecture_name}</td>
-          <td width='40rem' className='find_lectures'>{data.class}</td>
-          <td width='60rem' className='find_lectures'>{data.professor}</td>
-          <td width='40rem' className='find_lectures'>{data.grade}</td>
-          <td width='40rem' className='find_lectures'>{data.personnel}</td>
-          <td width='160rem'>{data.department}</td>
-        </tr>
+        <td width='60rem' className='find_lectures'>{data.code}</td>
+        <td width='160rem' className='find_lectures'>{data.lecture_name}</td>
+        <td width='40rem' className='find_lectures'>{data.class}</td>
+        <td width='60rem' className='find_lectures'>{data.professor}</td>
+        <td width='40rem' className='find_lectures'>{data.grade}</td>
+        <td width='40rem' className='find_lectures'>{data.personnel}</td>
+        <td width='160rem'>{data.department}</td>
+      </tr>
     )
 
     const load_basket_data = this.state.basket_lecture.map((data) =>
@@ -162,9 +242,12 @@ class timetable extends Component {
             <div className='find_lecture_container'>
               <h3 className='main_text'> 강의 찾기</h3>
               <hr className='main_line'/>
-              <input type='text'
+              <input 
+                name='search_text'
                 className='find_lecture_textbox'
                 placeholder='검색어를 입력하세요.'
+                value={this.state.search_text}
+                onChange= {this.handlingChange}
               />
               <img className = 'search_icon' alt='#' src={require('../img/search.png')}/>
               
